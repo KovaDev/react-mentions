@@ -354,7 +354,7 @@ class MentionsInput extends React.Component {
     )
     const newPlainTextValue = getPlainText(newValue, config)
 
-    const eventMock = { target: { ...event.target, value: newValue } }
+    const eventMock = { target: { ...event.target, value: newValue, selectionStart } }
 
     this.executeOnChange(
       eventMock,
@@ -436,7 +436,7 @@ class MentionsInput extends React.Component {
     ].join('')
     const newPlainTextValue = getPlainText(newValue, config)
 
-    const eventMock = { target: { ...event.target, value: newPlainTextValue } }
+    const eventMock = { target: { ...event.target, value: newPlainTextValue, selectionStart } }
 
     this.executeOnChange(
       eventMock,
@@ -510,7 +510,7 @@ class MentionsInput extends React.Component {
 
     // Propagate change
     // let handleChange = this.getOnChange(this.props) || emptyFunction;
-    let eventMock = { target: { value: newValue } }
+    let eventMock = { target: { value: newValue, selectionStart: ev.target.selectionStart } }
     // this.props.onChange.call(this, eventMock, newValue, newPlainTextValue, mentions);
     this.executeOnChange(eventMock, newValue, newPlainTextValue, mentions)
   }
@@ -912,7 +912,7 @@ class MentionsInput extends React.Component {
     })
 
     // Propagate change
-    const eventMock = { target: { value: newValue } }
+    const eventMock = { target: { value: newValue, selectionStart: newCaretPosition } }
     const mentions = getMentions(newValue, config)
     const newPlainTextValue = spliceString(
       plainTextValue,
